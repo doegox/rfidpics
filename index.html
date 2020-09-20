@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="medium" content="image" />
+	<title>Illuminated RFID Gallery</title>
+	<link href="css/styles.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/scripts.min.js"></script>
+</head>
+<body>
+<div id="title">Illuminated RFID Gallery</div>
+<div id="photo-view">
+	<div id="photo-box">
+		<a id="next-photo"><img id="photo" /></a>
+		<div id="photo-bar">
+			<div id="photo-links">
+				Check metadata for Artist and License terms<br />
+				<a id="metadata-link" href="javascript:void(0)">show metadata</a> | <a id="original-link" target="_blank">download original</a><span id="fullscreen-divider"> | </span><a id="fullscreen" href="javascript:void(0)">fullscreen</a>
+			</div>
+			<div id="metadata"></div>
+		</div>
+	</div>
+	
+	<a id="back">&lsaquo;</a>
+	<a id="next">&rsaquo;</a>
+</div>
+<div id="album-view">
+	<div id="thumbs">
+		<div id="loading">Loading...</div>
+	</div>
+	<div id="subalbums"></div>
+	<div id="powered-by">Powered by <a href="http://www.zx2c4.com/projects/photofloat/" target="_blank">PhotoFloat</a></div>
+</div>
+
+<div id="error-overlay"></div>
+<div id="error-text">Forgot my camera.</div>
+<div id="auth-text"><form id="auth-form"><input id="password" type="password" /><input type="submit" value="Login" /></form</div>
+
+</body>
+</html>
