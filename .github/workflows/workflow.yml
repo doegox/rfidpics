@@ -27,6 +27,8 @@ jobs:
           ( cd build/web; make; )
           ( cd build/scanner; python2 main.py ../web/albums ../web/cache/; )
           touch build/web/.nojekyll
+          rm build/web/js/.gitignore
+          rm build/web/css/.gitignore
           # needed to avoid failure in deploy (git remote rm origin):
           /usr/bin/git init
           /usr/bin/git remote add origin foo
