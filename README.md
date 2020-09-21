@@ -21,3 +21,5 @@ exiv2 -M "set Exif.Image.Artist Firstname Lastname <some@email.com>" \
       -M "set Exif.Image.Copyright Creative Commons BY-SA 4.0" \
       mypic.jpg
 ```
+
+If you think the website itself deserves enhancements, propose your PRs against https://github.com/doegox/rfidpics-engine
