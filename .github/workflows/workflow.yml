@@ -22,7 +22,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          python2 -m pip install Pillow
+          python2 -m pip install Pillow html
           # Restore existing cache files, if any
           ( cd build/web/albums;
             if git branch -a|grep -q remotes/origin/gh-pages; then
