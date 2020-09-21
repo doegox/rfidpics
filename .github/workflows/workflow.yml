@@ -23,13 +23,25 @@ jobs:
       - name: Install and Build 🔧
         run: |
           python2 -m pip install Pillow
-          mkdir -p build/web/cache/
+          # Restore existing cache files, if any
+          ( cd build/web/albums;
+            if git branch -a|grep -q remotes/origin/gh-pages; then
+                /usr/bin/git restore --source origin/gh-pages cache;
+                mv cache .. ;
+            else
+                mkdir -p ../cache;
+            fi;
+          )
+          # Minify CSS & JS
           ( cd build/web; make; )
+          # Scan pictures
           ( cd build/scanner; python2 main.py ../web/albums ../web/cache/; )
+          # Prevent Github Pages Jekyll to run on our website pages
           touch build/web/.nojekyll
+          # Make sure minified files are taken into account
           rm build/web/js/.gitignore
           rm build/web/css/.gitignore
-          # needed to avoid failure in deploy (git remote rm origin):
+          # Workaround needed to avoid failure in deploy (git remote rm origin):
           /usr/bin/git init
           /usr/bin/git remote add origin foo
       - name: Deploy 🚀
