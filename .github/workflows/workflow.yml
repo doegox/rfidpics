@@ -34,7 +34,6 @@ jobs:
           /usr/bin/git remote add origin foo
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.1
-#      uses: JacksonMaxfield/github-pages-deploy-action-python@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
