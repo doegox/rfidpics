@@ -2,6 +2,10 @@ This repo is used for automatic deployment of https://doegox.github.io/rfidpics
 
 If you wish to add your pictures, PRs are mostly welcome.
 
+The repo is quite large, you can limit your clone to the latest master:
+
+`git clone --depth 1 https://github.com/doegox/rfidpics.git`
+
 Please respect the following rules:
 
 * Provide pictures in JPEG, up to 95% quality, cropped to fit the card/reader. Avoid perspective, shoot flat.
