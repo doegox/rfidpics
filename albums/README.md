@@ -4,7 +4,7 @@ If you wish to add your pictures, PRs are mostly welcome.
 
 Please respect the following rules:
 
-* Provide pictures in JPEG, up to 95% quality.
+* Provide pictures in JPEG, up to 95% quality, cropped to fit the card/reader. Avoid perspective, shoot flat.
 * Provide proper ownership information: a name and an email, this can be the same as what you use for git commits.
 * Provide proper open source license terms. I advise to use Creative Commons BY-SA 4.0 or Public Domain.
 * Respect the naming conventions as much as possible (see other files) as well as the directory structure.
