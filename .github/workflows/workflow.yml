@@ -41,11 +41,8 @@ jobs:
           # Make sure minified files are taken into account
           rm build/web/js/.gitignore
           rm build/web/css/.gitignore
-          # Workaround needed to avoid failure in deploy (git remote rm origin):
-          /usr/bin/git init
-          /usr/bin/git remote add origin foo
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.6.1
+        uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
