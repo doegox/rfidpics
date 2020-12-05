@@ -121,7 +121,8 @@
 			.replace(/"/g, "")
 			.replace(/'/g, "")
 			.replace(/_-_/g, "-")
-			.toLowerCase();
+			.toLowerCase()
+			.replace(/[^\x00-\x7F]/g, "");
 		while (path.indexOf("--") !== -1)
 			path = path.replace(/--/g, "-");
 		while (path.indexOf("__") !== -1)
