@@ -12,7 +12,7 @@ CSS_COMPILER := java -jar bin/yui-compressor.jar --type css
 
 DEBUG ?= 0
 
-.PHONY: all deploy clean
+.PHONY: all clean
 
 all: $(JS_MIN) $(CSS_MIN)
 
@@ -41,29 +41,3 @@ $(CSS_MIN): $(CSS_MIN_FILES)
 clean:
 	@echo "    RM     " $(JS_MIN) $(JS_MIN_FILES) $(CSS_MIN) $(CSS_MIN_FILES)
 	@rm -fv $(JS_MIN) $(JS_MIN_FILES) $(CSS_MIN) $(CSS_MIN_FILES)
-
-include ../deployment-config.mk
-
-SSH_OPTS := -q -o ControlMaster=auto -o ControlPath=.ssh-deployment.sock
-
-deploy: all
-	@echo "    SSH     $(WEB_SERVER)"
-	@ssh $(SSH_OPTS) -Nf $(WEB_SERVER)
-	
-	@echo "    RSYNC   . $(WEB_SERVER):$(HTDOCS_PATH)"
-	@ssh -t $(SSH_OPTS) $(WEB_SERVER) "sudo -u $(HTDOCS_USER) -v"
-	@rsync -aizm --delete-excluded --exclude=.ssh-deployment.sock --exclude=Makefile --exclude=*.swp \
-		--exclude=bin/ --include=scripts.min.js --include=styles.min.css \
-		--exclude=*.js --exclude=*.css --rsh="ssh $(SSH_OPTS)" \
-		--rsync-path="sudo -n -u $(HTDOCS_USER) rsync" \
-		. "$(WEB_SERVER):$(HTDOCS_PATH)" 
-	
-	@echo "    CHOWN   $(HTDOCS_USER):$(HTDOCS_USER) $(WEB_SERVER):$(HTDOCS_PATH)"
-	@ssh -t $(SSH_OPTS) $(WEB_SERVER) "sudo chown -R $(HTDOCS_USER):$(HTDOCS_USER) '$(HTDOCS_PATH)'"
-	
-	@echo "    CHMOD   750/640 $(WEB_SERVER):$(HTDOCS_PATH)"
-	@ssh -t $(SSH_OPTS) $(WEB_SERVER) "sudo find '$(HTDOCS_PATH)' -type f -exec chmod 640 {} \;; \
-					sudo find '$(HTDOCS_PATH)' -type d -exec chmod 750 {} \;;"
-	
-	@echo "    SSH     $(WEB_SERVER)"
-	@ssh -O exit $(SSH_OPTS) $(WEB_SERVER)
