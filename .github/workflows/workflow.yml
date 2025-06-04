@@ -5,24 +5,24 @@ on:
       - master
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v4
         with:
           repository: doegox/rfidpics-engine
           persist-credentials: false
           path: build # need to be in a subdir
 
       - name: Checkout albums 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
           path: build/web/albums
 
       - name: Install and Build 🔧
         run: |
-          python2 -m pip install Pillow
+          python3 -m pip install Pillow
           # Restore existing cache files, if any
           ( cd build/web/albums;
             if git branch -a|grep -q remotes/origin/gh-pages; then
@@ -35,7 +35,7 @@ jobs:
           # Minify CSS & JS
           ( cd build/web; make; )
           # Scan pictures
-          ( cd build/scanner; python2 main.py ../web/albums ../web/cache/; )
+          ( cd build/scanner; python3 main.py ../web/albums ../web/cache/; )
           # Prevent Github Pages Jekyll to run on our website pages
           touch build/web/.nojekyll
           # Make sure minified files are taken into account
