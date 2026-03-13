@@ -24,14 +24,14 @@ jobs:
         run: |
           python3 -m pip install Pillow
           # Restore existing cache files, if any
-          ( cd build/web/albums;
-            if git branch -a|grep -q remotes/origin/gh-pages; then
-                /usr/bin/git restore --source origin/gh-pages cache;
-                mv cache .. ;
-            else
-                mkdir -p ../cache;
-            fi;
-          )
+          # ( cd build/web/albums;
+          #   if git branch -a|grep -q remotes/origin/gh-pages; then
+          #       /usr/bin/git restore --source origin/gh-pages cache;
+          #       mv cache .. ;
+          #   else
+          mkdir -p build/web/cache;
+          #   fi;
+          # )
           # Minify CSS & JS
           ( cd build/web; make; )
           # Scan pictures
